@@ -1,4 +1,5 @@
 import Head from "next/head";
+import BlogGrid from "../components/blog/BlogGrid";
 
 const proyectos = () => {
   return (
@@ -10,6 +11,7 @@ const proyectos = () => {
       <div className="box-default flex-col">
         <section className="section-initial justify-start">
           <h3 className="title">Blog</h3>
+          <BlogGrid />
         </section>
       </div>
     </>

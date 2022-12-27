@@ -5,7 +5,7 @@ const arr = new Array(5);
 const ProyectsGrid = () => {
   return (
     <>
-      <div className="cardsGrid">
+      <div className="cards-grid">
         <Proyect />
       </div>
     </>

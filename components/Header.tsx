@@ -3,10 +3,6 @@ import Link from "next/link";
 import logo from "../public/images/navbar/letras.svg";
 import { useEffect } from "react";
 const Header = () => {
-  useEffect(() => {
-    console.log(document.location.pathname);
-  });
-
   return (
     <header className="header z-50">
       <div className="box-default">

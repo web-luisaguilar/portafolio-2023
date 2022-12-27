@@ -1,6 +1,5 @@
 import Image from "next/image";
 const Card = ({ children }: { children: React.ReactNode }) => {
-  console.log(children);
   return (
     <div className="card">
       <Image
@@ -8,7 +7,7 @@ const Card = ({ children }: { children: React.ReactNode }) => {
         alt="default proyect"
         width={300}
         height={170}
-        className="aspect-video"
+        className=" aspect-video"
       />
 
       <div className="flex flex-col p-4">{children}</div>
