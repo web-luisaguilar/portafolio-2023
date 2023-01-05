@@ -1,5 +1,7 @@
 import Head from "next/head";
 import ContactForm from "../components/contacto/ContactForm";
+import SocialMedia from "../components/SocialMedia";
+
 const proyectos = () => {
   return (
     <>
@@ -8,10 +10,11 @@ const proyectos = () => {
         <link rel="shortcut icon" href="/favicon.svg" type="image/x-icon" />
       </Head>
       <div className="box-default flex-col">
-        <section className="section-initial justify-start">
+        <section className="section mt-[-3vh] justify-start">
           <h3 className="title">Contacto</h3>
           <ContactForm />
         </section>
+        <SocialMedia />
       </div>
     </>
   );

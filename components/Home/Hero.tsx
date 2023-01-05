@@ -13,10 +13,16 @@ const Hero = () => {
         />
       </div>
       <div className="flex-col ">
-        <p className="text-base text-white/80 md:text-xl">
-          !Hola¡ Soy un desarrollador Autodidacta amante de la tecnologia.
-          Apacionado por aprender mucho sobre el mundo del desarrollo web y
-          mucho mas. Vivo en la Ciudad de Mexico
+        <p className="text-center text-base text-white/80 md:text-2xl">
+          !Hola, Soy Desarrollador Frontend autodidacta y apacionado del mundo
+          de la tecnologia.
+        </p>
+        <br />
+        <p className="text-center text-base text-white/80 md:text-xl">
+          Busco aprender todo lo que pueda a un alto nivel principalmente a
+          nivel de desarrollo web y aunque me centro en el Frontend con{" "}
+          <b>React.js</b>, <b>Typescript</b> y mas. tambien tengo conocimiento
+          en el area Backend y mantenimiento de equipos de computo.
         </p>
       </div>
       <div className="flex justify-center pt-20">

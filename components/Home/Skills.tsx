@@ -37,18 +37,21 @@ const Skills = () => {
     //bg-slate-700/5 py-10 shadow-inner shadow-white/5 agreagar para fondo
     <section className="section my-10 min-h-[40vh]  ">
       <div className="h-full w-full">
-        <h2 className="subtitle ">Skills</h2>
+        <h2 className="subtitle ">Habilidades</h2>
         <div className="flex max-w-full flex-wrap justify-around gap-6 p-4 pt-10">
           {skillsData.map((data, i) => (
             <figure
               key={i}
-              className="bg-white/10 p-2 hover:scale-105 hover:shadow-md hover:shadow-black/50"
+              className="bg-white/10 p-2 opacity-60 hover:scale-105 hover:opacity-100 hover:shadow-md hover:shadow-black/50"
             >
               <Image
                 src={data.icon}
                 width={100}
                 height={100}
-                className="aspect-square"
+                style={{ animationDuration: "1500ms" }}
+                className={`aspect-square ${
+                  data.name == "react" ? "hover:animate-spin" : ""
+                }`}
                 alt={data.name}
               />
               <figcaption className="pt-2 text-center capitalize">

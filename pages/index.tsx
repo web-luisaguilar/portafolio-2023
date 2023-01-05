@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Hero from "../components/Home/Hero";
 import Skills from "../components/Home/Skills";
+import SocialMedia from "../components/SocialMedia";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <div className="box-default flex-col">
         <Hero />
         <Skills />
+        <SocialMedia />
       </div>
     </>
   );
