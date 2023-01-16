@@ -1,7 +1,28 @@
 import React from "react";
 
-const ErrorFormMessage = ({ errorText }: { errorText: string | undefined }) => {
-  return <>{errorText ? <div className="error-box">{errorText}</div> : null}</>;
+export enum ErrorType {
+  ALERT = "alert-box",
+}
+const ErrorFormMessage = ({
+  errorText,
+  errorType,
+}: {
+  errorText: string | undefined;
+  errorType?: ErrorType;
+}) => {
+  return (
+    <>
+      {errorText ? (
+        <div
+          className={`error-box ${
+            errorType == ErrorType.ALERT ? ErrorType.ALERT : ""
+          }`}
+        >
+          {errorText}
+        </div>
+      ) : null}
+    </>
+  );
 };
 
 export default ErrorFormMessage;

@@ -8,7 +8,7 @@ export const useForm = (
   validationsForm: (form: Form) => ValidationsErrors | null
 ) => {
   const [form, setForm] = useState(initialForm);
-  const [errors, setErrors] = useState<ValidationsErrors | null>({});
+  const [errors, setErrors] = useState<ValidationsErrors | null>();
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<Boolean | null>(null);
 
@@ -27,8 +27,7 @@ export const useForm = (
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrors(validationsForm(form));
-
-    if (errors == null || Object.keys(errors).length === 0) {
+    if (Object.keys(validationsForm(form) || 0).length === 0) {
       setLoading(true);
       helpHttp()
         .post("https://formsubmit.co/ajax/42283fdc0c42015622354c63c654a6b3", {

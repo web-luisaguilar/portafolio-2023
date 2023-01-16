@@ -1,7 +1,7 @@
 import { ChangeEvent, FocusEvent, useEffect, useState } from "react";
 import validationsForm from "../../helpers/validationForm";
 import { useForm } from "../../hooks/useForm";
-import ErrorFormMessage from "../ErrorFormMessage";
+import ErrorFormMessage, { ErrorType } from "../ErrorFormMessage";
 import Loading from "../Loading";
 
 export interface Form {
@@ -24,7 +24,6 @@ const ContactForm = () => {
 
   const { form, errors, loading, response, handleChange, handleSubmit } =
     useForm(initialForm, validationsForm);
-  console.log(loading);
 
   return (
     <form className="flex w-full  p-2" onSubmit={(e) => handleSubmit(e)}>
@@ -96,6 +95,18 @@ const ContactForm = () => {
           className="btn mx-auto px-20"
         />
         {loading ? <Loading /> : null}
+        {response ? (
+          <>
+            <div className="bg-green-600/20 p-1 text-center font-semibold text-green-600">
+              MENSAJE ENVIADO
+            </div>
+            <div className="py-2 text-center text-sm italic text-lime-200/80">
+              Resibiras una respuesta pronto
+            </div>
+          </>
+        ) : (
+          <></>
+        )}
       </fieldset>
     </form>
   );

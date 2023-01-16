@@ -1,3 +1,6 @@
+.alert-box {
+  @apply !bg-yellow-300/30 !font-extrabold !text-white;
+}
 .box-default {
   @apply m-auto flex w-5/6 justify-between md:w-[760px] lg:w-[1000px];
 }
