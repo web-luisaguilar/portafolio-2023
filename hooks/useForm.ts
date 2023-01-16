@@ -1,35 +1,34 @@
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState, FocusEvent } from "react";
 import { helpHttp } from "../helpers/helpHttp";
+import { Form } from "../components/contacto/ContactForm";
+import { ValidationsErrors } from "../helpers/validationForm";
 
-export interface Form {
-  name: string;
-}
-
-export const useForm = (initialForm, validationsForm) => {
+export const useForm = (
+  initialForm: Form,
+  validationsForm: (form: Form) => ValidationsErrors | null
+) => {
   const [form, setForm] = useState(initialForm);
-  const [errors, setError] = useState({});
+  const [errors, setErrors] = useState<ValidationsErrors | null>({});
   const [loading, setLoading] = useState(false);
-  const [response, setResponse] = useState(null);
+  const [response, setResponse] = useState<Boolean | null>(null);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
+  const handleChange = (
+    e:
+      | ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+      | FocusEvent<HTMLInputElement>
+  ) => {
+    const { name, value } = e.target as HTMLInputElement;
     setForm({
       ...form,
       [name]: value,
     });
   };
 
-  const handleBlur = (e) => {
-    handleChange(e);
-    setError(validationsForm(form));
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError(validationsForm(form));
+    setErrors(validationsForm(form));
 
-    if (Object.keys(errors).length === 0) {
+    if (errors == null || Object.keys(errors).length === 0) {
       setLoading(true);
       helpHttp()
         .post("https://formsubmit.co/ajax/42283fdc0c42015622354c63c654a6b3", {
@@ -47,7 +46,10 @@ export const useForm = (initialForm, validationsForm) => {
             setResponse(false);
           }, 3000);
         });
-    } else return;
+    } else {
+      setLoading(false);
+      return;
+    }
   };
 
   return {
@@ -56,7 +58,6 @@ export const useForm = (initialForm, validationsForm) => {
     loading,
     response,
     handleChange,
-    handleBlur,
     handleSubmit,
   };
 };
