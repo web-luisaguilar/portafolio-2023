@@ -1,7 +1,8 @@
-import ProyectsGrid from "../components/proyectos/ProyectsGrid";
+import ProyectsGrid from "../../components/proyectos/ProyectsGrid";
 import Head from "next/head";
+import { getAllFilesMetadata } from "../../lib/mdx";
 
-const proyectos = () => {
+const proyectos = ({ proyects }: { proyects: [] }) => {
   return (
     <>
       <Head>
@@ -11,11 +12,17 @@ const proyectos = () => {
       <div className="box-default flex-col">
         <section className="section-initial justify-start">
           <h2 className="title">Proyectos</h2>
-          <ProyectsGrid />
+          <ProyectsGrid proyects={proyects} />
         </section>
       </div>
     </>
   );
 };
+
+export async function getStaticProps() {
+  let folder = "data/proyects";
+  let proyects = await getAllFilesMetadata(folder);
+  return { props: { proyects } };
+}
 
 export default proyectos;

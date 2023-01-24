@@ -8,7 +8,7 @@
   @apply w-fit border border-white/40 p-3 font-bold text-cyan-200 duration-100 hover:scale-105 hover:cursor-pointer hover:border-white hover:bg-white/10 hover:text-cyan-300 hover:shadow-md hover:shadow-black/60 active:scale-100;
 }
 .card {
-  @apply mt-10 flex min-h-[350px] max-w-[300px] flex-col items-center justify-between overflow-hidden bg-white/20 opacity-80 shadow-md shadow-black/70 duration-200  hover:scale-105 hover:opacity-100;
+  @apply mt-10 flex h-auto min-h-[350px] max-w-[300px] flex-col items-center justify-between overflow-hidden bg-white/20 opacity-80 shadow-md shadow-black/70  duration-200 hover:scale-105 hover:opacity-100;
 }
 .cards-grid {
   @apply flex flex-wrap justify-center gap-4 lg:justify-start;

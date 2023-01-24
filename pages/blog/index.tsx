@@ -1,5 +1,5 @@
 import Head from "next/head";
-import BlogGrid from "../components/blog/BlogGrid";
+import BlogGrid from "../../components/blog/BlogGrid";
 
 const proyectos = () => {
   return (

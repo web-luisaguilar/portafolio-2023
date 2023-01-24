@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 @import "./tailwind.css";
+@import "./prism-nord.css";
 
 :root {
   --bg-dark-color: #1b1b1b;
