@@ -4,6 +4,7 @@ import { getAllFilesMetadata } from "../../lib/mdx";
 import { Proyect } from "../../components/proyectos/Proyect";
 
 const proyectos = ({ proyects }: { proyects: Proyect[] }) => {
+  console.log(proyects);
   return (
     <>
       <Head>
