@@ -1,5 +1,11 @@
 export const helpHttp = () => {
-  const customFetch = (endpoint, options) => {
+  interface OptionsFetch {
+    signal?: AbortSignal;
+    method?: string;
+    headers?: {};
+    body?: any;
+  }
+  const customFetch = (endpoint: string, options: OptionsFetch) => {
     const defaultHeaders = {
       accept: "application/json",
     };
@@ -34,26 +40,26 @@ export const helpHttp = () => {
                         err: true,
                         status: err.code,
                         statusText: err.message,
-                    };
+                    };e
                 } */ //!En caso de querer detectar el error del abort controller usar estas lineas
 
         return err;
       });
   };
 
-  const get = (url, options = {}) => customFetch(url, options);
+  const get = (url: string, options = {}) => customFetch(url, options);
 
-  const post = (url, options = {}) => {
+  const post = (url: string, options: OptionsFetch = {}) => {
     options.method = "POST";
     return customFetch(url, options);
   };
 
-  const put = (url, options = {}) => {
+  const put = (url: string, options: OptionsFetch = {}) => {
     options.method = "PUT";
     return customFetch(url, options);
   };
 
-  const del = (url, options = {}) => {
+  const del = (url: string, options: OptionsFetch = {}) => {
     options.method = "DELETE";
     return customFetch(url, options);
   };
