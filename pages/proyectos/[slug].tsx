@@ -45,8 +45,11 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params }) {
-  const { source, frontmatter } = await getFileBySlug(params, "data/proyects");
+export async function getStaticProps({ params }: { params: { slug: string } }) {
+  const { source, frontmatter } = await getFileBySlug(
+    params.slug,
+    "data/proyects"
+  );
   return {
     props: { source, frontmatter },
   };
