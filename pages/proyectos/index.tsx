@@ -1,8 +1,9 @@
 import ProyectsGrid from "../../components/proyectos/ProyectsGrid";
 import Head from "next/head";
 import { getAllFilesMetadata } from "../../lib/mdx";
+import { Proyect } from "../../components/proyectos/Proyect";
 
-const proyectos = ({ proyects }: { proyects: [] }) => {
+const proyectos = ({ proyects }: { proyects: Proyect[] }) => {
   return (
     <>
       <Head>

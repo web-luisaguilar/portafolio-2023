@@ -1,10 +1,12 @@
-import BlogCard from "./BlogCard";
+import BlogCard, { Post } from "./BlogCard";
 
-const BlogGrid = () => {
+const BlogGrid = ({ posts }: { posts: Post[] }) => {
   return (
     <>
       <div className="cards-grid">
-        <BlogCard />
+        {posts.map((post, index) => (
+          <BlogCard key={`key-${index}-post`} postData={post} />
+        ))}
       </div>
     </>
   );

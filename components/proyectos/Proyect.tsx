@@ -1,35 +1,46 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import Card from "../Card";
+import Image from "next/image";
 
 export interface Proyect {
   title: string;
   date: string;
   languages: string[];
-  github: string;
+  github?: string;
   demo?: string;
   slug: string;
   description: string;
 }
+
 const initialProyect: Proyect = {
-  title: " test",
-  date: " tes",
-  languages: ["test", "test"],
-  github: " tes",
-  demo: " tes",
-  slug: " test",
-  description: "test",
+  title: "",
+  date: "",
+  languages: [""],
+  github: "",
+  demo: "",
+  slug: "",
+  description: "",
 };
 const Proyect = ({ proyectData }: { proyectData: Proyect }) => {
   const [proyect, setProyect] = useState<Proyect>(initialProyect as Proyect);
   useEffect(() => {
     setProyect(proyectData);
   }, [proyectData]);
-  console.log(proyect);
+
   return (
     <>
-      <Card proyectData={proyectData}>
-        <>
+      <div className="card ">
+        <Link href={`/proyectos/${proyect?.slug || ""}`}>
+          <Image
+            src="/images/proyecto-default.jpg"
+            alt="default proyect"
+            width={300}
+            height={170}
+            className="aspect-video"
+          />
+        </Link>
+
+        <div className="flex h-full w-full flex-col justify-between gap-y-2 p-4">
           <div>
             <Link
               className="decoration-cyan-300/80 hover:underline"
@@ -40,15 +51,20 @@ const Proyect = ({ proyectData }: { proyectData: Proyect }) => {
               </h3>
             </Link>
 
-            <p className="flex text-sm text-white/50">📆{proyect?.date}</p>
+            <p className="flex items-center align-middle text-sm text-white/80">
+              📆{proyect?.date}
+            </p>
 
             <div className="flex justify-end py-2">
               {proyect?.languages ? (
                 <>
                   <p className="my-auto text-sm">Lenguajes: </p>
                   {proyect?.languages.map((language, index) => (
-                    <div key={`${index}-${language}`} className="pl-1">
-                      <span className="border border-white/40 px-1 text-xs capitalize text-white/40">
+                    <div
+                      key={`${index}-${language}`}
+                      className="flex items-center pl-1"
+                    >
+                      <span className="border border-white/40 px-1 text-xs capitalize text-white/40 hover:bg-white/10">
                         {language}
                       </span>
                     </div>
@@ -61,7 +77,7 @@ const Proyect = ({ proyectData }: { proyectData: Proyect }) => {
             className="h-full decoration-white/50 hover:underline"
             href={`/proyectos/${proyectData?.slug || ""}`}
           >
-            <p className="h-full text-base text-white/70">
+            <p className="h-full text-base text-white">
               {proyect?.description}
             </p>
           </Link>
@@ -85,14 +101,13 @@ const Proyect = ({ proyectData }: { proyectData: Proyect }) => {
             ) : null}
             <Link
               className="btn inline-flex"
-              href={`/proyectos/${proyect?.slug || "/proyectos"}`}
+              href={`proyectos/${proyect?.slug || "proyectos"}`}
             >
               Leer mas &raquo;
             </Link>
           </div>
-        </>
-      </Card>
-      {/*</Link>*/}
+        </div>
+      </div>
     </>
   );
 };

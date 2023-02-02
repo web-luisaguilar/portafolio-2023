@@ -1,8 +1,6 @@
-import Proyect from "./Proyect";
+import Proyect, { Proyect as ProyectType } from "./Proyect";
 
-const arr = new Array(5);
-
-const ProyectsGrid = ({ proyects }: { proyects: [] }) => {
+const ProyectsGrid = ({ proyects }: { proyects: ProyectType[] }) => {
   return (
     <>
       <div className="cards-grid">

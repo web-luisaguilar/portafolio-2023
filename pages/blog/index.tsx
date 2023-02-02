@@ -1,7 +1,9 @@
 import Head from "next/head";
+import { Post } from "../../components/blog/BlogCard";
 import BlogGrid from "../../components/blog/BlogGrid";
+import { getAllFilesMetadata } from "../../lib/mdx";
 
-const proyectos = () => {
+const proyectos = ({ posts }: { posts: Post[] }) => {
   return (
     <>
       <Head>
@@ -11,11 +13,17 @@ const proyectos = () => {
       <div className="box-default flex-col">
         <section className="section-initial justify-start">
           <h3 className="title">Blog</h3>
-          <BlogGrid />
+          <BlogGrid posts={posts} />
         </section>
       </div>
     </>
   );
 };
+
+export async function getStaticProps() {
+  let folder = "data/posts";
+  let posts = await getAllFilesMetadata(folder);
+  return { props: { posts } };
+}
 
 export default proyectos;
