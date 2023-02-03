@@ -22,11 +22,13 @@ const initialProyect: Proyect = {
   description: "",
 };
 const Proyect = ({ proyectData }: { proyectData: Proyect }) => {
-  const [proyect, setProyect] = useState<Proyect>(initialProyect as Proyect);
-  useEffect(() => {
-    setProyect(proyectData);
-  }, [proyectData]);
-  console.log(proyectData);
+  let proyect = proyectData;
+  console.log(proyect);
+  //const [proyect, setProyect] = useState<Proyect>(initialProyect as Proyect);
+  //useEffect(() => {
+  //  setProyect(proyectData);
+  //}, [proyectData]);
+  //console.log(proyectData);
 
   return (
     <>
