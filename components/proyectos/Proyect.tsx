@@ -21,15 +21,7 @@ const initialProyect: Proyect = {
   slug: "",
   description: "",
 };
-const Proyect = ({ proyectData }: { proyectData: Proyect }) => {
-  let proyect = proyectData;
-  console.log(proyect);
-  //const [proyect, setProyect] = useState<Proyect>(initialProyect as Proyect);
-  //useEffect(() => {
-  //  setProyect(proyectData);
-  //}, [proyectData]);
-  //console.log(proyectData);
-
+const Proyect = ({ proyect }: { proyect: Proyect }) => {
   return (
     <>
       <div className="card ">
@@ -47,7 +39,7 @@ const Proyect = ({ proyectData }: { proyectData: Proyect }) => {
           <div>
             <Link
               className="decoration-cyan-300/80 hover:underline"
-              href={`/proyectos/${proyectData?.slug || ""}`}
+              href={`/proyectos/${proyect?.slug || ""}`}
             >
               <h3 className="text-center text-xl font-bold uppercase text-cyan-400">
                 {proyect?.title || "Proyecto"}
@@ -78,7 +70,7 @@ const Proyect = ({ proyectData }: { proyectData: Proyect }) => {
           </div>
           <Link
             className="h-full decoration-white/50 hover:underline"
-            href={`/proyectos/${proyectData?.slug || ""}`}
+            href={`/proyectos/${proyect?.slug || ""}`}
           >
             <p className="h-full text-base text-white">
               {proyect?.description}

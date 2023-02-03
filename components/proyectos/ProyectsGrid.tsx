@@ -5,7 +5,7 @@ const ProyectsGrid = ({ proyects }: { proyects: ProyectType[] }) => {
     <>
       <div className="cards-grid">
         {proyects.map((proyect, index) => (
-          <Proyect key={index} proyectData={proyect} />
+          <Proyect key={index} proyect={proyect} />
         ))}
       </div>
     </>

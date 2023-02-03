@@ -5,7 +5,7 @@ const BlogGrid = ({ posts }: { posts: Post[] }) => {
     <>
       <div className="cards-grid">
         {posts.map((post, index) => (
-          <BlogCard key={`key-${index}-post`} postData={post} />
+          <BlogCard key={`key-${index}-post`} post={post} />
         ))}
       </div>
     </>

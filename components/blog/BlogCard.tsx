@@ -19,12 +19,7 @@ const initialProyect: Post = {
   description: "",
 };
 
-const BlogCard = ({ postData }: { postData: Post }) => {
-  const [post, setPost] = useState<Post>(initialProyect);
-  useEffect(() => {
-    setPost(postData);
-  }, [postData]);
-
+const BlogCard = ({ post }: { post: Post }) => {
   return (
     <>
       <div className="card ">
