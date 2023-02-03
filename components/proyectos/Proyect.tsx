@@ -26,6 +26,7 @@ const Proyect = ({ proyectData }: { proyectData: Proyect }) => {
   useEffect(() => {
     setProyect(proyectData);
   }, [proyectData]);
+  console.log(proyectData);
 
   return (
     <>
