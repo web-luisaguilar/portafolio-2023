@@ -8,16 +8,8 @@ export interface Post {
   github?: string;
   slug: string;
   description: string;
+  banner?: string;
 }
-
-const initialProyect: Post = {
-  title: "",
-  date: "",
-  languages: [""],
-  github: "",
-  slug: "",
-  description: "",
-};
 
 const BlogCard = ({ post }: { post: Post }) => {
   return (
@@ -25,7 +17,7 @@ const BlogCard = ({ post }: { post: Post }) => {
       <div className="card ">
         <Link href={`/blog/${post?.slug || ""}`}>
           <Image
-            src="/images/blog-default.png"
+            src={post.banner ? post.banner : "/images/blog-default.svg"}
             alt="default proyect"
             width={300}
             height={170}

@@ -10,24 +10,17 @@ export interface Proyect {
   demo?: string;
   slug: string;
   description: string;
+  banner?: string;
 }
-
-const initialProyect: Proyect = {
-  title: "",
-  date: "",
-  languages: [""],
-  github: "",
-  demo: "",
-  slug: "",
-  description: "",
-};
 const Proyect = ({ proyect }: { proyect: Proyect }) => {
   return (
     <>
       <div className="card ">
         <Link href={`/proyectos/${proyect?.slug || ""}`}>
           <Image
-            src="/images/proyecto-default.jpg"
+            src={
+              proyect.banner ? proyect.banner : "/images/proyecto-default.svg"
+            }
             alt="default proyect"
             width={300}
             height={170}
