@@ -18,10 +18,6 @@ const initialForm: Form = {
 };
 
 const ContactForm = () => {
-  //const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-  //  e.preventDefault();
-  //};
-
   const { form, errors, loading, response, handleChange, handleSubmit } =
     useForm(initialForm, validationsForm);
 
