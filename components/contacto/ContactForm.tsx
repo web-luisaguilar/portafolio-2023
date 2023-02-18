@@ -57,11 +57,7 @@ const ContactForm = () => {
   };
 
   return (
-    <form
-      action="/api/hello"
-      className="flex w-full  p-2"
-      onSubmit={(e) => handleSubmit(e)}
-    >
+    <form className="flex w-full  p-2" onSubmit={(e) => handleSubmit(e)}>
       <fieldset className="flex w-full flex-col border border-cyan-500/70 bg-slate-400/5 p-6">
         <legend className="mx-auto px-3 text-center text-lg uppercase text-cyan-500/70">
           Contactame
