@@ -31,19 +31,22 @@ const ContactForm = () => {
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState(false);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    fetch("https://formsubmit.co/ajax/web.luisaguilar@gmail.com", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(form),
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.log(error));
+    let response = await fetch(
+      "https://formsubmit.co/ajax/web.luisaguilar@gmail.com",
+      //"/api/hello",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(form),
+      }
+    );
+    let result = await response.json();
+    console.log(result);
   };
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -54,7 +57,11 @@ const ContactForm = () => {
   };
 
   return (
-    <form className="flex w-full  p-2" onSubmit={(e) => handleSubmit(e)}>
+    <form
+      action="/api/hello"
+      className="flex w-full  p-2"
+      onSubmit={(e) => handleSubmit(e)}
+    >
       <fieldset className="flex w-full flex-col border border-cyan-500/70 bg-slate-400/5 p-6">
         <legend className="mx-auto px-3 text-center text-lg uppercase text-cyan-500/70">
           Contactame
