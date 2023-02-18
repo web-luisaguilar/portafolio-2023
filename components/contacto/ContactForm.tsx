@@ -1,4 +1,4 @@
-import { ChangeEvent, FocusEvent, useEffect, useState } from "react";
+import { ChangeEvent, FocusEvent, FormEvent, useEffect, useState } from "react";
 import validationsForm from "../../helpers/validationForm";
 import { useForm } from "../../hooks/useForm";
 import ErrorFormMessage, { ErrorType } from "../ErrorFormMessage";
@@ -10,6 +10,12 @@ export interface Form {
   subject: string;
   message: string;
 }
+export interface Errors {
+  name?: string;
+  email?: string;
+  subject?: string;
+  message?: string;
+}
 const initialForm: Form = {
   name: "",
   email: "",
@@ -18,8 +24,34 @@ const initialForm: Form = {
 };
 
 const ContactForm = () => {
-  const { form, errors, loading, response, handleChange, handleSubmit } =
-    useForm(initialForm, validationsForm);
+  //const { form, errors, loading, response, handleChange, handleSubmit } =
+  //  useForm(initialForm, validationsForm);
+  const [form, setForm] = useState(initialForm);
+  const [errors, setErrors] = useState<Errors>({});
+  const [loading, setLoading] = useState(false);
+  const [response, setResponse] = useState(false);
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    fetch("https://formsubmit.co/ajax/web.luisaguilar@gmail.com", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(form),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error));
+  };
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+    console.log(form);
+  };
 
   return (
     <form className="flex w-full  p-2" onSubmit={(e) => handleSubmit(e)}>
@@ -31,7 +63,7 @@ const ContactForm = () => {
           <div className="w-1/2">
             <label htmlFor="name">Nombre: </label>
             <input
-              onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
+              onChange={(e) => handleChange(e)}
               type="text"
               id="name"
               name="name"
@@ -73,7 +105,7 @@ const ContactForm = () => {
         <br />
         <label htmlFor="message">Mensaje: </label>
         <textarea
-          onChange={(e: ChangeEvent<HTMLTextAreaElement>) => handleChange(e)}
+          onChange={(e) => handleChange(e)}
           className=""
           name="message"
           placeholder="Escribe tu Mensajes"
