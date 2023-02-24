@@ -5,11 +5,29 @@ type Data = {
   name: string;
 };
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  res.status(200).json(req.body);
+  let data = JSON.parse(req.body);
+  console.log(data);
+  try {
+    let response = await fetch(
+      "https://formsubmit.co/ajax/web.luisaguilar@gmail.com",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(req.body),
+      }
+    );
+    let data = await response.json();
+    console.log(data);
+  } catch (e) {
+    console.log(e);
+  }
 
-  console.log(req.body);
+  res.status(200).json(req.body);
 }

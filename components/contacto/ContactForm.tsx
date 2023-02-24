@@ -33,21 +33,36 @@ const ContactForm = () => {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let response = await fetch(
-      "https://formsubmit.co/ajax/web.luisaguilar@gmail.com",
-      //"/api/hello",
-      {
+    let data = JSON.stringify(form);
+    try {
+      let response = await fetch("/api/hello", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(form),
-      }
-    );
-    let result = await response.json();
-    console.log(result);
+        body: data,
+      });
+      let dataResponse = await response.json();
+      console.log(JSON.parse(dataResponse));
+    } catch (e) {
+      console.log("Ocurrio un Error");
+      console.log(e);
+    }
   };
+  //const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  //  e.preventDefault();
+  //  let response = await fetch(
+  //    "https://formsubmit.co/ajax/web.luisaguilar@gmail.com",
+  //    //"/api/hello",
+  //    {
+  //      method: "POST",
+  //      headers: {
+  //        "Content-Type": "application/json",
+  //        Accept: "application/json",
+  //      },
+  //      body: JSON.stringify(form),
+  //    }
+  //  );
+  //  let result = await response.json();
+  //  console.log(result);
+  //};
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -57,7 +72,12 @@ const ContactForm = () => {
   };
 
   return (
-    <form className="flex w-full  p-2" onSubmit={(e) => handleSubmit(e)}>
+    <form
+      className="flex w-full  p-2"
+      onSubmit={(e) => handleSubmit(e)}
+      action="/api/hello"
+      method="post"
+    >
       <fieldset className="flex w-full flex-col border border-cyan-500/70 bg-slate-400/5 p-6">
         <legend className="mx-auto px-3 text-center text-lg uppercase text-cyan-500/70">
           Contactame
