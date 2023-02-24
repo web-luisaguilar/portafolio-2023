@@ -31,21 +31,21 @@ const ContactForm = () => {
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState(false);
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    let data = JSON.stringify(form);
-    try {
-      let response = await fetch("/api/hello", {
-        method: "POST",
-        body: data,
-      });
-      let dataResponse = await response.json();
-      console.log(JSON.parse(dataResponse));
-    } catch (e) {
-      console.log("Ocurrio un Error");
-      console.log(e);
-    }
-  };
+  //const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  //  e.preventDefault();
+  //  let data = JSON.stringify(form);
+  //  try {
+  //    let response = await fetch("/api/hello", {
+  //      method: "POST",
+  //      body: data,
+  //    });
+  //    let dataResponse = await response.json();
+  //    console.log(JSON.parse(dataResponse));
+  //  } catch (e) {
+  //    console.log("Ocurrio un Error");
+  //    console.log(e);
+  //  }
+  //};
   //const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
   //  e.preventDefault();
   //  let response = await fetch(
@@ -74,9 +74,10 @@ const ContactForm = () => {
   return (
     <form
       className="flex w-full  p-2"
-      onSubmit={(e) => handleSubmit(e)}
-      action="/api/hello"
-      method="post"
+      //onSubmit={(e) => handleSubmit(e)}
+      method="POST"
+      action="https://formsubmit.co/web.luisaguilar@gmail.com"
+      encType="multipart/form-data"
     >
       <fieldset className="flex w-full flex-col border border-cyan-500/70 bg-slate-400/5 p-6">
         <legend className="mx-auto px-3 text-center text-lg uppercase text-cyan-500/70">
@@ -86,13 +87,13 @@ const ContactForm = () => {
           <div className="w-1/2">
             <label htmlFor="name">Nombre: </label>
             <input
-              onChange={(e) => handleChange(e)}
+              //onChange={(e) => handleChange(e)}
               type="text"
               id="name"
               name="name"
               className="w-full"
               placeholder="Escribe tu Nombre"
-              value={form.name}
+              //value={form.name}
               autoComplete="off"
             />
             <ErrorFormMessage errorText={errors?.name} />
@@ -100,14 +101,14 @@ const ContactForm = () => {
           <div className="w-1/2">
             <label htmlFor="email">Correo: </label>
             <input
-              onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
+              //onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
               type="email"
               autoComplete="on"
               id="email"
               name="email"
               placeholder="Escribe el Asunto"
               className="w-full"
-              value={form.email}
+              //value={form.email}
             />
             <ErrorFormMessage errorText={errors?.email} />
           </div>
@@ -115,20 +116,20 @@ const ContactForm = () => {
         <br />
         <label htmlFor="subject">Asunto: </label>
         <input
-          onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
+          //onChange={(e: ChangeEvent<HTMLInputElement>) => handleChange(e)}
           type="text"
           name="subject"
           id="subject"
           placeholder="Escribe tu Asunto"
           autoComplete="off"
-          value={form.subject}
+          //value={form.subject}
         />
 
         <ErrorFormMessage errorText={errors?.subject} />
         <br />
         <label htmlFor="message">Mensaje: </label>
         <textarea
-          onChange={(e) => handleChange(e)}
+          //onChange={(e) => handleChange(e)}
           className=""
           name="message"
           placeholder="Escribe tu Mensajes"
@@ -136,7 +137,7 @@ const ContactForm = () => {
           cols={30}
           autoComplete="off"
           rows={5}
-          value={form.message}
+          //value={form.message}
         ></textarea>
         <ErrorFormMessage errorText={errors?.message} />
         <br />
